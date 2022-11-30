@@ -7,8 +7,18 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.10"
-yapf = "^0.32.0"
 
+
+[tool.poetry.group.dev.dependencies]
+toml = "^0.10.2"
+yapf = "^0.32.0"
+isort = "^5.10.1"
+poethepoet = "^0.16.5"
+
+[tool.poe.tasks]
+format="poetry run yapf --recursive --in-place --verbose  ."
+imports="poetry run isort ."
+pre=["imports","format"]
 
 [build-system]
 requires = ["poetry-core"]
