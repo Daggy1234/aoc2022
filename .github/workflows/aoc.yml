@@ -19,6 +19,7 @@ jobs:
         with:
           userId: 969860
           sessionCookie: ${{ secrets.AOC_SESSION }}
+          year: 2022
           
       - uses: stefanzweifel/git-auto-commit-action@v4     # Step that pushes these local changes back to your github repo
         with:
