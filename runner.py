@@ -1,13 +1,19 @@
+from __future__ import annotations
+
 import os
 import subprocess
 import sys
+from typing import IO, Optional
 
 
-def read_output(stream, callback):
-    mstr = ""
-    for line in iter(stream.readline, b''):
-        mstr += line.decode()
-    return mstr
+def read_output(stream: Optional[IO[bytes]],
+                callback: Optional[IO[bytes]]) -> str:
+    if stream:
+        mstr = ""
+        for line in iter(stream.readline, b''):
+            mstr += line.decode()
+        return mstr
+    return ""
 
 
 if __name__ == "__main__":
