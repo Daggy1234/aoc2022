@@ -1,6 +1,6 @@
 # aoc2022
 
-![](https://img.shields.io/badge/day%20📅-1-blue) ![](https://img.shields.io/badge/days%20completed-1-red)
+![](https://img.shields.io/badge/day%20📅-2-blue) ![](https://img.shields.io/badge/days%20completed-2-red)
 
 another year another aoc
 
@@ -27,6 +27,7 @@ chmod +x runpy.sh
 | Day | Part 1 | Part 2 |
 | :---: | :---: | :---: |
 | [Day 1](https://adventofcode.com/2022/day/1) | ⭐ | ⭐ |
+| [Day 2](https://adventofcode.com/2022/day/2) | ⭐ | ⭐ |
 <!--- advent_readme_stars table --->
 
 ## License
