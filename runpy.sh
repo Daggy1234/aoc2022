@@ -10,14 +10,19 @@ else
     PYNAME="python3"
     echo "Using python3"
 fi
+echo "$PYNAME"
+ver=$($PYNAME -V 2>&1 | grep -e'(?<=$PYNAME )(.+)')
+echo "$ver"
+parsedVersion=$(echo "${ver//./}")
+echo "$parsedVersion"
 
-ver=$($PYNAME -V 2>&1 | sed 's/.* \([0-9]\).\([0-9]\).*/\1\2/')
+# ver=$($PYNAME -V 2>&1 | sed 's/.* \([0-9]\).\([0-9]\).*/\1\2/')
 
-if [ "$ver" -lt "38" ]; then
-    echo "This script requires python 3.8 or greater. $PYNAME has version $ver"
-    exit 1
-fi
+# if [ "$ver" -lt "38" ]; then
+#     echo "This script requires python 3.8 or greater. $PYNAME has version $ver"
+#     exit 1
+# fi
 
-echo "Running stuff"
-eval $PYNAME runner.py "$PYNAME"
-echo "All done"
+# echo "Running stuff"
+# eval $PYNAME runner.py "$PYNAME"
+# echo "All done"
