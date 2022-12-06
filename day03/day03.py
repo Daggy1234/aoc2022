@@ -1,18 +1,16 @@
 import string
+from typing import Dict, List
 
 i = 1
-priorities = {}
-for char in string.ascii_lowercase:
-	priorities[char] = i
-	i+=1
-for char in string.ascii_uppercase:
+priorities: Dict[str, int] = {}
+for char in (string.ascii_lowercase+string.ascii_uppercase):
 	priorities[char] = i
 	i+=1
 print(priorities)
 
-def part_a():
-	lines = [line.strip() for line in open("data.txt", "r").readlines()]
-	uncommon = []
+def part_1() -> int:
+	lines: List[str] = [line.strip() for line in open("data.txt", "r").readlines()]
+	uncommon: List[str] = []
 	for l in lines:
 		l_l = len(l) // 2
 		part_a = set(list(l[:l_l]))
@@ -24,8 +22,9 @@ def part_a():
 	for item in uncommon:
 		score += priorities[item]
 	print(score)
+	return score
 
-def part_b():
+def part_2():
 	lines = [line.strip() for line in open("data.txt", "r").readlines()]
 	badges = []
 	for i in range(0,len(lines),3):
@@ -42,5 +41,3 @@ def part_b():
 	for item in badges:
 		score += priorities[item]
 	print(score)
-
-part_b()
