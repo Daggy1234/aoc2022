@@ -76,7 +76,8 @@ def part_2():
 		monkey_l.append(em)
 	game = MonkeyGame(monkey_l)
 
-	for j in range(20):
+	for j in range(10000):
+		print(f"Round {j}")
 		game.run_round_pt2()
 
 	game.run_counts()
