@@ -1,5 +1,5 @@
 from typing import List, Tuple
-
+from functools import reduce
 
 class Monkey:
 	def __init__(self, inp: List[str]) -> None:
@@ -21,6 +21,9 @@ class Monkey:
 	def run_bored(self):
 		self.itms = [old//3 for old in self.itms]
 
+	def run_make_nums_not_stupid(self,inp):
+		self.itms = [old%inp for old in self.itms]
+
 	def run_check(self) -> Tuple[Tuple[int,List[int]], Tuple[int,List[int]]]:
 		t_itms = [l for l in self.itms if ((l % self.cond) == 0)]
 		f_itms = [l for l in self.itms if ((l % self.cond) != 0)]
@@ -34,6 +37,8 @@ class Monkey:
 class MonkeyGame:
 	def __init__(self, inp: List[Monkey]) -> None:
 		self.monkey_l: List[Monkey] = inp
+		nums =  [m.cond for m in self.monkey_l]
+		self.modnum = reduce((lambda x,y: x * y), nums)
 
 	def run_round(self):
 		for monk in self.monkey_l:
@@ -46,6 +51,7 @@ class MonkeyGame:
 	def run_round_pt2(self):
 		for monk in self.monkey_l:
 			monk.run_op()
+			monk.run_make_nums_not_stupid(self.modnum)
 			true_cs, fall_cs = monk.run_check()
 			self.monkey_l[true_cs[0]].get_throw(true_cs[1])
 			self.monkey_l[fall_cs[0]].get_throw(fall_cs[1])
@@ -56,7 +62,7 @@ class MonkeyGame:
 		print(arr[0] * arr[1])
 
 
-ll = [f.strip() for f in open("test_data.txt","r").readlines() if (f.strip() != "")]
+ll = [f.strip() for f in open("data.txt","r").readlines() if (f.strip() != "")]
 def part_1():
 	monkey_l = []
 	for i in range(0,len(ll), 6):
@@ -77,7 +83,6 @@ def part_2():
 	game = MonkeyGame(monkey_l)
 
 	for j in range(10000):
-		print(f"Round {j}")
 		game.run_round_pt2()
 
 	game.run_counts()
